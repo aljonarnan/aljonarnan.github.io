@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MY GALLERY</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    .custom-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hide-show-card {
+      background-color: #e0f0ff;
+      border-radius: 20px;
+      padding: 15px;
+      max-width: 200px;
+      margin: 20px auto 0;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.3s;
+      color: #003366;
+      font-weight: bold;
+    }
+
+    .hide-show-card:hover {
+      background-color: #d0e8ff;
+      transform: scale(1.05);
+    }
+
+    #inquireButton {
+      background-color: #d3532e;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      max-width: 150px;
+      transition: all 0.3s ease;
+    }
+
+    #inquireButton:hover {
+      background-color: #bf4a2c;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-box {
+      max-width: 180px;
+      margin: 10px auto;
+      padding: 12px 18px;
+      border-radius: 8px;
+      background-color: #d3532e;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact-box:hover {
+      background-color: #bf4a2c;
+      transform: scale(1.05);
+    }
+
+  </style>
+
+  <script>
+    function changeTextOnHover() {
+      var inquireButton = document.getElementById("inquireButton");
+      inquireButton.textContent = "Thanks for Visiting";
+    }
+
+    function revertTextOnLeave() {
+      var inquireButton = document.getElementById("inquireButton");
+      inquireButton.textContent = "TAP THIS!";
+    }
+
+    function hideFooter() {
+      document.getElementById("footer").style.display = "none";
+      document.getElementById("footerShow").style.display = "block";
+    }
+
+    function showFooter() {
+      document.getElementById("footer").style.display = "block";
+      document.getElementById("footerShow").style.display = "none";
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid p-5 mb-3" style="background-color: rgb(88, 119, 165); color: white">
+    <div class="h3 text-center custom-header">
+      Scroll to Discover Masterpieces
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div class="row" id="container-row"></div>
+  </div>
+
+  <div class="container-fluid mt-3 py-5" style="background-color: rgb(88, 119, 165); color: white;">
+    <div class="row">
+      <div class="col text-center">
+        <div class="h2 mb-5">HI</div>
+        <div id="inquireButton" class="contact-box"
+          onmouseover="changeTextOnHover()" onmouseleave="revertTextOnLeave()" data-bs-toggle="modal"
+          data-bs-target="#contactModal">
+          TAP THIS!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="nameInput" class="form-label">Name</label>
+              <input type="text" class="form-control" id="nameInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="messageInput" class="form-label">Message</label>
+              <textarea class="form-control" id="messageInput" rows="3" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-5" id="footer" style="background-color: rgb(240, 240, 240); color: #707070">
+    <div class="row">
+      <div class="col">
+        <div class="container my-3">
+          <div class="row" id="hobbies"></div>
+        </div>
+        <div class="hide-show-card text-center" onclick="hideFooter()">Hide</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-3" id="footerShow"
+    style="background-color: rgb(240, 240, 240); color: #707070; display: none">
+    <div class="row">
+      <div class="col">
+        <div class="hide-show-card text-center" onclick="showFooter()">Show Hobbies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="p-3 rounded" style="background-color: #e0f0ff;">
+      <div class="text-end">
+        <a href="../index.html" class="btn btn-primary">Back</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const titles = ["Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Test 9", "Test 10", "Test 11", "Test 12", "Test 13", "Test 14", "Test 15", "Test 16", "Test 17", "Test 18", "Test 19", "Test 20"];
+    const pictures = ["image1.jpg", "image2.jpg", "image5.jpg", "image4.jpg", "image3.jpg", "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg", "image11.jpg", "image12.jpg", "image13.jpg", "image14.jpg", "image15.jpg", "image16.jpg", "image17.jpg", "image18.jpg", "image19.jpg", "image20.jpg"];
+
+    const rowElement = document.getElementById("container-row");
+    for (let i = 0; i < titles.length; i++) {
+      rowElement.innerHTML += `
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="card my-3 shadow rounded-5 overflow-hidden">
+            <img src="image/${pictures[i]}" class="card-img-top" alt=""/>
+          </div>
+        </div>`;
+    }
+  </script>
+
+  <script>
+    const hobbiesTitles = ["Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"];
+    const hobbiesPics = ["hobbies1.jpg", "hobbies2.jpg", "hobbies3.jpg", "hobbies4.jpg", "hobbies5.jpg", "hobbies6.jpg", "hobbies7.jpg", "hobbies8.jpg"];
+
+    const hobbiesElement = document.getElementById("hobbies");
+    for (let i = 0; i < hobbiesTitles.length; i++) {
+      hobbiesElement.innerHTML += `
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="card my-3 shadow rounded-5 overflow-hidden">
+            <img src="image/hobbies/${hobbiesPics[i]}" class="card-img-top" alt=""/>
+          </div>
+        </div>`;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
