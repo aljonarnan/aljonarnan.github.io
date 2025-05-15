@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>View Character</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: white;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #2c2c3c;
+            color: white;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .character-img {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .character-img {
+            transform: scale(1.05);
+        }
+
+        .race-gender {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <img id="characterImage" src="" alt="Character Image" class="character-img" />
+        <h2 id="characterName">Unknown Character</h2>
+        <p class="race-gender" id="characterRaceGender">Unknown Race - Unknown Gender</p>
+        <p><strong>Base KI:</strong> <span id="characterKi">0</span></p>
+        <p><strong>Total KI:</strong> <span id="characterMaxKi">0</span></p>
+        <a href="index.html" class="btn btn-primary btn-back">Back to List</a>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const formatKi = (ki) => {
+            if (!ki || isNaN(ki)) return "0";
+            const num = Number(ki);
+            if (num >= 1000000) return (num / 1000000).toFixed(0) + ".000.000";
+            if (num >= 1000) return (num / 1000).toFixed(0) + ".000";
+            return num;
+        };
+
+        const name = getQueryParam("name");
+        const race = getQueryParam("race");
+        const gender = getQueryParam("gender");
+        const ki = getQueryParam("ki");
+        const maxKi = getQueryParam("maxKi");
+        const image = getQueryParam("image");
+
+        document.getElementById("characterName").textContent = name || "Unknown Character";
+        document.getElementById("characterRaceGender").textContent = `${race || "Unknown Race"} - ${gender || "Unknown Gender"}`;
+        document.getElementById("characterKi").textContent = formatKi(ki);
+        document.getElementById("characterMaxKi").textContent = formatKi(maxKi);
+        document.getElementById("characterImage").src = image || "https://via.placeholder.com/600x350?text=No+Image";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
